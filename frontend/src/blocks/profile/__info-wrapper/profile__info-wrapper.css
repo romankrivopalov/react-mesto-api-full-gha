@@ -1,0 +1,17 @@
+.profile__info-wrapper {
+  box-sizing: border-box;
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 28px;
+  max-width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .profile__info-wrapper {
+    padding: 0;
+    gap: 18px;
+  }
+}
