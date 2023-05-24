@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { urlPattern } = require('../utils/constants');
 
 const cardSchema = mongoose.Schema({
   name: {
@@ -10,6 +11,10 @@ const cardSchema = mongoose.Schema({
   link: {
     type: String,
     required: true,
+    validate: {
+      validator: (url) => urlPattern.test(url),
+      message: 'Wrong link format',
+    },
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
