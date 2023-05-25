@@ -9,6 +9,9 @@ const { BadRequestError } = require('../utils/error/index');
 
 router.post('/signin', validateLogin, login);
 router.post('/signup', validateCreateUser, createUser);
+router.get('/signout', (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Exit' });
+});
 
 router.use('/users', validateToken, usersRouter);
 router.use('/cards', validateToken, cardsRouter);
