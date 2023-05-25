@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/romankrivopalov/express-mesto-gha/issues"
   },
-  "homepage": "https://github.com/romankrivopalov/express-mesto-gha#readme",
+  "homepage": ".",
   "devDependencies": {
     "eslint": "^8.39.0",
     "eslint-config-airbnb-base": "^15.0.0",
