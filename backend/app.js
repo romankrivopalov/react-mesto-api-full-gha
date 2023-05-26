@@ -1,15 +1,15 @@
 const express = require('express');
 const helmet = require('helmet');
+const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const mongoose = require('mongoose');
-// const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const router = require('./routes');
 const handleError = require('./middlewares/handleError');
 const { limiterSetting } = require('./utils/constants');
 
 const app = express();
-// app.use(cors());
+app.use(cors());
 const { PORT = 3000 } = process.env;
 const limiter = rateLimit(limiterSetting);
 
