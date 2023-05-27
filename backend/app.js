@@ -28,6 +28,12 @@ app.use(cookieParser());
 
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {});
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('The server is about to crash');
+  }, 0);
+});
+
 app.use(router);
 app.use(handleError);
 
