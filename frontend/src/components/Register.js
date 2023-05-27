@@ -7,7 +7,6 @@ function Register({ navigate, setUserEmail, onInfoTooltipOpen }) {
     auth.getRegistrationUser(userData)
       .then(data => {
         console.log(data.status)
-        // console.log(data) // id и email
         navigate("/signin");
         setUserEmail(data.email)
         onInfoTooltipOpen({ isOpen: true, status: true })
