@@ -50,8 +50,6 @@ module.exports.getUserById = (req, res, next) => {
     userId = req.user._id;
   }
 
-  console.log(userId);
-
   userSchema
     .findById(userId)
     .orFail()
