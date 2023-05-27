@@ -38,25 +38,24 @@ function App() {
         [ cards, setCards ] = useState([]);
 
   useEffect(() => {
-    if (localStorage.getItem('userId')) {
+    if (loggedIn) {
       auth.checkValidityUser(localStorage.getItem('userId'))
         .then((data) => {
-          setLoggedIn(true);
           setUserEmail(data.email)
         })
         .then(() => {
           navigate("/", {replace: true});
-        })
-    }
+        });
 
-    Promise.all([ api.getUserInfo(), api.getInitialCards() ])
-      .then(res => {
-        const [ userData, cardsArray ] = res;
-        setCards(cardsArray);
-        setCurrentUser(userData);
-      })
-      .catch(err => console.log(err));
-  }, [])
+      Promise.all([ api.getUserInfo(), api.getInitialCards() ])
+        .then(res => {
+          const [ userData, cardsArray ] = res;
+          setCards(cardsArray);
+          setCurrentUser(userData);
+        })
+        .catch(err => console.log(err));
+    }
+  }, [loggedIn])
 
   function handleSignOut() {
     localStorage.clear('userId');
