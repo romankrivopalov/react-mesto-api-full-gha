@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -17,15 +18,15 @@ app.use(cors({
   credentials: true,
   maxAge: 30,
 }));
-const { PORT = 3000 } = process.env;
-const limiter = rateLimit(limiterSetting);
 
+const limiter = rateLimit(limiterSetting);
+const { PORT, DB_ADDRESS } = process.env;
 app.use(limiter);
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 
-mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {});
+mongoose.connect(DB_ADDRESS, {});
 
 app.use(router);
 app.use(handleError);
