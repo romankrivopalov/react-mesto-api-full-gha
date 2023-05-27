@@ -6,6 +6,6 @@
 
 ## Ссылки на проект
 
-IP-адрес 150.168.13.42
-Frontend https://krivo.mesto.nomoredomains.rocks/
+IP-адрес 150.168.13.42  
+Frontend https://krivo.mesto.nomoredomains.rocks/  
 Backend https://api.krivo.mesto.nomoredomains.rocks/
