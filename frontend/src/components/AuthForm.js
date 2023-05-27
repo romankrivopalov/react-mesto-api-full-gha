@@ -33,7 +33,7 @@ function AuthForm({ title, btnText, handleSubmit, children }) {
 
         <label className="auth-form__input-wrapper">
           <input
-          type="text"
+          type="password"
           name="password"
           className="auth-form__input"
           placeholder="Пароль"
