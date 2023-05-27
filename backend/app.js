@@ -20,13 +20,13 @@ app.use(cors({
 }));
 
 const limiter = rateLimit(limiterSetting);
-const { PORT, DB_ADDRESS } = process.env;
+const { PORT = 3000 } = process.env;
 app.use(limiter);
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 
-mongoose.connect(DB_ADDRESS, {});
+mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {});
 
 app.use(router);
 app.use(handleError);
