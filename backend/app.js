@@ -15,6 +15,7 @@ app.use(cors({
     'https://krivo.mesto.nomoredomains.rocks',
   ],
   credentials: true,
+  maxAge: 3600,
 }));
 const { PORT = 3000 } = process.env;
 const limiter = rateLimit(limiterSetting);
