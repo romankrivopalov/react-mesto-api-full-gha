@@ -9,7 +9,13 @@ const handleError = require('./middlewares/handleError');
 const { limiterSetting } = require('./utils/constants');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3001',
+    'https://krivo.mesto.nomoredomains.rocks',
+  ],
+  credentials: true,
+}));
 const { PORT = 3000 } = process.env;
 const limiter = rateLimit(limiterSetting);
 

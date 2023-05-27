@@ -38,9 +38,9 @@ function App() {
         [ cards, setCards ] = useState([]);
 
   useEffect(() => {
-    if (localStorage.getItem('jwt')) {
-      auth.checkValidityUser(localStorage.getItem('jwt'))
-        .then(({ data }) => {
+    if (localStorage.getItem('userId')) {
+      auth.checkValidityUser(localStorage.getItem('userId'))
+        .then((data) => {
           setLoggedIn(true);
           setUserEmail(data.email)
         })
@@ -51,6 +51,7 @@ function App() {
 
     Promise.all([ api.getUserInfo(), api.getInitialCards() ])
       .then(res => {
+        console.log(res)
         const [ userData, cardsArray ] = res;
         setCards(cardsArray);
         setCurrentUser(userData);
@@ -59,8 +60,7 @@ function App() {
   }, [])
 
   function handleSignOut() {
-    console.log(1)
-    localStorage.clear('jwt');
+    localStorage.clear('userId');
     setLoggedIn(false);
     navigate("/signin", {replace: true});
   }

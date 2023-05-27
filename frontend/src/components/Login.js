@@ -5,8 +5,8 @@ function Login({ setUserEmail, setLoggedIn, navigate, onInfoTooltipOpen }) {
   function handleAuthorizationUser(userData) {
     auth.getAuthorizationUser(userData)
       .then(data => {
-        if (data.token) {
-          localStorage.setItem('jwt', data.token);
+        if (data._id) {
+          localStorage.setItem('userId', data._id);
           setLoggedIn(true);
           setUserEmail(userData.email)
           navigate("/");
