@@ -60,6 +60,7 @@ function App() {
 
   function handleSignOut() {
     localStorage.clear('userId');
+    auth.getLogoutUser();
     setLoggedIn(false);
     navigate("/signin", {replace: true});
   }

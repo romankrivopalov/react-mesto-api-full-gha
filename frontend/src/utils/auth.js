@@ -40,7 +40,15 @@ class Auth {
         "Authorization" : `Bearer ${jwt}`
       }
     })
-    .then(res => res.json())
+    .then(res => {if (res.ok) return res.json()})
+  }
+
+  getLogoutUser() {
+    return fetch(`${this._baseUrl}/signout`, {
+      method: 'GET',
+      credentials: 'include',
+    })
+    .then(res => {if (res.ok) return res.json()})
   }
 }
 
