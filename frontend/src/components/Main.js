@@ -39,7 +39,7 @@ function Main(props) {
             <Card
               key={card._id}
               id={card._id}
-              ownerId={card.owner._id}
+              owner={card.owner}
               link={card.link}
               name={card.name}
               likes={[...card.likes]}

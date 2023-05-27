@@ -3,7 +3,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Card(card) {
   const currentUser = useContext(CurrentUserContext),
-        cardOwner = currentUser._id === card.ownerId,
+        cardOwner = currentUser._id === card.owner,
         isLiked = card.likes.some(i => i === currentUser._id),
         cardLikeButtonClassName = !isLiked ? 'card__like-icon' : 'card__like-icon card__like-icon_active';
 
