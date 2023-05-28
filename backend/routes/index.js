@@ -6,6 +6,9 @@ const { login, createUser } = require('../controllers/users');
 const usersRouter = require('./users');
 const cardsRouter = require('./cards');
 const { BadRequestError } = require('../utils/error/index');
+const { requestLogger, errorLogger } = require('../middlewares/logger');
+
+router.use(requestLogger);
 
 router.post('/signin', validateLogin, login);
 router.post('/signup', validateCreateUser, createUser);
@@ -13,9 +16,17 @@ router.get('/signout', (req, res) => {
   res.clearCookie('jwt').send({ message: 'Exit' });
 });
 
+router.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('The server is about to crash');
+  }, 0);
+});
+
 router.use('/users', validateToken, usersRouter);
 router.use('/cards', validateToken, cardsRouter);
 router.use('/*', validateToken, (req, res, next) => next(new BadRequestError('This page not found')));
+
+router.use(errorLogger);
 router.use(errors());
 
 module.exports = router;
