@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const router = require('./routes');
 const handleError = require('./middlewares/handleError');
 const { limiterSetting } = require('./utils/constants');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000, DB_ADDRESS = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
@@ -29,7 +30,11 @@ app.use(cookieParser());
 
 mongoose.connect(DB_ADDRESS, {});
 
+app.use(requestLogger);
+
 app.use(router);
+
+app.use(errorLogger);
 app.use(handleError);
 
 app.listen(PORT, () => {
