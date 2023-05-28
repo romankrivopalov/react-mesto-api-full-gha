@@ -38,10 +38,13 @@ function App() {
         [ cards, setCards ] = useState([]);
 
   useEffect(() => {
-    if (loggedIn) {
-      auth.checkValidityUser(localStorage.getItem('userId'))
+    const token = localStorage.getItem('userId');
+
+    if (token) {
+      auth.checkValidityUser(token)
         .then((data) => {
-          setUserEmail(data.email)
+          setLoggedIn(true);
+          setUserEmail(data.email);
         })
         .then(() => {
           navigate("/", {replace: true});
@@ -55,7 +58,7 @@ function App() {
         })
         .catch(err => console.log(err));
     }
-  }, [loggedIn])
+  }, [navigate])
 
   function handleSignOut() {
     localStorage.clear('userId');
